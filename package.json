@@ -1,19 +1,31 @@
 {
   "name": "dynamic-theme-utilities",
   "version": "1.0.0",
-  "description": "This package",
+  "description": "The dynamic-theme-utilities is a JavaScript package designed to facilitate the creation and manipulation of dynamic themes, particularly for Material Design color schemes.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "dd"
+    "url": "https://github.com/Kawixh/dynamic-theme-utilities.git"
   },
   "keywords": [
-    "dd"
+    "theme",
+    "dynamic",
+    "utilities",
+    "material",
+    "color",
+    "color-utilities",
+    "material-color-utilities",
+    "material-color",
+    "material-colors",
+    "generate-theme",
+    "generate-theme-colors",
+    "generate-theme-colors-utilities"
   ],
   "author": "kaw1sh",
+  "homepage": "https://github.com/Kawixh/dynamic-theme-utilities",
   "license": "ISC",
   "dependencies": {
     "@material/material-color-utilities": "^0.2.7"
