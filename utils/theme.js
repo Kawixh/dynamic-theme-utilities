@@ -1,44 +1,39 @@
 import { themeFromImage } from "@material/material-color-utilities";
+import { generateTonalPallete } from "./tonal_pallete";
+import { convertColor } from "./color";
+import { convertScheme } from "./scheme";
+import { generateCssVariables } from "./css_variables";
 
-export const generateTheme = (image, options) => {
-  const theme = themeFromImage(image, options);
+export const generateTheme = async (image, options) => {
+  const theme = await themeFromImage(image, options);
 
-  const modifiedTheme = [];
-
-  return theme;
-};
-
-// Function to convert color to RGB and HEX
-function convertToRGBAndHex(color) {
-  // Convert color to RGB and HEX here
-  // This is a placeholder, replace with actual conversion logic
-  return {
-    rgb: color,
-    hex: color,
+  const modifiedTheme = {
+    rgb: modifyTheme(theme, "rgb"),
+    hex: modifyTheme(theme, "hex"),
   };
-}
 
-// Function to convert theme colors
-function convertThemeColors(theme) {
-  const newTheme = [];
-  const rgbTheme = { type: "rgb" };
-  const hexTheme = { type: "hex" };
+  modifiedTheme["cssTokens"] = generateCssVariables(modifiedTheme);
 
-  for (let key in theme) {
-    if (typeof theme[key] === "object" && theme[key] !== null) {
-      newTheme[key] = convertThemeColors(theme[key]);
-    } else {
-      const { rgb, hex } = convertToRGBAndHex(theme[key]);
-      rgbTheme[key] = rgb;
-      hexTheme[key] = hex;
-    }
-  }
-  return newTheme;
-}
-
-// Usage
-const theme = {
-  // Your theme object here
+  return modifiedTheme;
 };
 
-const newTheme = convertThemeColors(theme);
+const modifyTheme = (theme, to = "rgb") => {
+  return {
+    object: {
+      source: convertColor(theme.source, to),
+      primaryPalette: generateTonalPallete(theme.palettes.primary, to),
+      secondaryPalette: generateTonalPallete(theme.palettes.secondary, to),
+      tertiaryPalette: generateTonalPallete(theme.palettes.tertiary, to),
+      neutralPalette: generateTonalPallete(theme.palettes.neutral, to),
+      neutralVariantPalette: generateTonalPallete(
+        theme.palettes.neutralVariant,
+        to,
+      ),
+      errorPalette: generateTonalPallete(theme.palettes.error, to),
+      schemes: {
+        light: convertScheme(theme.schemes.light, to).props,
+        dark: convertScheme(theme.schemes.dark, to).props,
+      },
+    },
+  };
+};

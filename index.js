@@ -1,5 +1,5 @@
 import { generateTheme } from "./utils/theme";
 
-export const generateThemeFromImage = (image, options) => {
-  return generateTheme(image, options);
+export const generateThemeFromImage = async (image, options) => {
+  return await generateTheme(image, options);
 };
