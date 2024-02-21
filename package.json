@@ -1,6 +1,6 @@
 {
   "name": "dynamic-theme-utilities",
-  "version": "1.0.1",
+  "version": "1.2.0",
   "description": "The dynamic-theme-utilities is a JavaScript package designed to facilitate the creation and manipulation of dynamic themes, particularly for Material Design color schemes.",
   "main": "index.js",
   "scripts": {
