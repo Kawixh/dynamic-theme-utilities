@@ -1,4 +1,7 @@
-import { themeFromImage } from "@material/material-color-utilities";
+import {
+  themeFromImage,
+  themeFromSourceColor,
+} from "@material/material-color-utilities";
 import { generateTonalPallete } from "./tonal_pallete";
 import { convertColor } from "./color";
 import { convertScheme } from "./scheme";
@@ -6,6 +9,19 @@ import { generateCssVariables } from "./css_variables";
 
 export const generateTheme = async (image, options) => {
   const theme = await themeFromImage(image, options);
+
+  const modifiedTheme = {
+    rgb: modifyTheme(theme, "rgb"),
+    hex: modifyTheme(theme, "hex"),
+  };
+
+  modifiedTheme["cssTokens"] = generateCssVariables(modifiedTheme);
+
+  return modifiedTheme;
+};
+
+export const generateThemeFromColor = (color) => {
+  const theme = themeFromSourceColor(color);
 
   const modifiedTheme = {
     rgb: modifyTheme(theme, "rgb"),

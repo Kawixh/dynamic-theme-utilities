@@ -19,9 +19,12 @@ export const generateCssVariables = (theme, prefix = "--dtu-sys") => {
         keys.includes("b") &&
         keys.includes("a")
       ) {
-        let values = Object.values(theme[key]);
+        const rgb = Object.entries(theme[key])
+          .filter(([key]) => key !== "a") // Exclude the 'a' key
+          .map(([, value]) => value) // Get the values
+          .join(" "); // Join them together
 
-        cssVariables[`${prefix}-${key}`] = values.join(" ");
+        cssVariables[`${prefix}-${key}`] = rgb;
       } else {
         const nestedVariables = generateCssVariables(
           theme[key],

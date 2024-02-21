@@ -16,6 +16,12 @@ npm install dynamic-theme-utilities
 yarn add dynamic-theme-utilities
 ```
 
+### Initialize using CLI
+
+```bash
+npx dynamic-theme-utilities generate_css '{HEX_COLOR}'
+```
+
 ## Documentation
 
 ### Generate dynamic theme
@@ -34,9 +40,9 @@ const themeGenerator = async () => {
 }
 ```
 
-### Apply newly generated theme
+### Apply the newly generated theme
 
-You can apply newly generated theme as css tokens (variables) by calling function `applyTheme(theme)` this function takes in an argument of theme object - which is returned by `generateThemeFromImage(image)`. This function will extract cssTokens from `theme` and append those tokens in a new `.dtu__cssTokens` class and append this class to `head` tag. It creates a style element with id `dtu__cssTokens`.
+You can apply the newly generated theme as CSS tokens (variables) by calling the function `applyTheme(theme)`. This function takes in an argument of the theme object - which is returned by `generateThemeFromImage(image).` This function will extract cssTokens from `theme` and append those tokens in a new `.dtu__cssTokens` class and append this class to the `head` tag. It creates a style element with the id `dtu__cssTokens.`
 
 ```javascript
 import { applyTheme } from "dynamic-theme-utilities/utils/apply";
@@ -48,6 +54,20 @@ const themeGenerator = async () => {
 }
 ```
 
+## Generate custom CSS styling for your color using CLI
+
+You can generate a new CSS file named `dtu__css_tokens.css` in the root of your project by giving a `HEX_COLOR` syntax for generating this file:
+
+```bash
+npx dynamic-theme-utilities generate_css '{HEX_COLOR}'
+```
+
+```bash
+#EXAMPLE
+
+npx dynamic-theme-utilities generate_css 'A4A3A2'
+```
+
 
 ## Features
 
@@ -55,3 +75,11 @@ const themeGenerator = async () => {
 - Generate themes from only images
 - Apply themes to DOM by calling `applyTheme`
 - Support all JS frameworks + vanilla JS support
+- Generate `dtu__css_tokens.css` file using `npx dynamic-theme-utilities generate_css '{HEX_VALUE}'`
+
+
+## Roadmap
+
+- Add comments
+- ~~Add ability to generate file using bash command so you can populate CSS variables before hand~~
+- Add more integrations
